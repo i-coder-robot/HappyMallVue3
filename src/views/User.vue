@@ -10,6 +10,7 @@
 
 <script>
 import {reactive,toRefs} from "vue";
+import {useStore} from "vuex";
 
 export default {
   name: "User",
@@ -18,10 +19,11 @@ export default {
       userList:[{name:"aaa",age:18},{"name":"bbb",age:23}],
       total:888,
     })
+    const store = useStore()
 
     function GetUserList(){
       console.log("GetUserList clicked...")
-
+      store.dispatch("Get_User_List")
     }
 
     return {
