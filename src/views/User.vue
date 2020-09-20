@@ -23,7 +23,9 @@ export default {
 
     function GetUserList(){
       console.log("GetUserList clicked...")
-      store.dispatch("Get_User_List")
+      store.dispatch("Get_User_List").then(res=>{
+        console.log(res)
+      })
     }
 
     return {
