@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53f047d5-3e50-41a6-ac32-4960f7d0a386" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +30,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -42,6 +39,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/store" />
+      <recent name="$PROJECT_DIR$/src/service" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
@@ -62,7 +61,7 @@
       <workItem from="1600381656269" duration="176000" />
       <workItem from="1600513539809" duration="5808000" />
       <workItem from="1600523308276" duration="4427000" />
-      <workItem from="1600568262183" duration="1472000" />
+      <workItem from="1600568262183" duration="2745000" />
     </task>
     <servers />
   </component>
@@ -78,13 +77,25 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="698" y="354" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1600566890909" />
-    <state x="661" y="362" width="598" height="476" key="find.popup" timestamp="1600518309115">
+    <state x="661" y="362" width="598" height="476" key="find.popup" timestamp="1600571037820">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="661" y="362" width="598" height="476" key="find.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1600518309115" />
+    <state x="661" y="362" width="598" height="476" key="find.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1600571037820" />
     <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1600565309723">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1600565309723" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/service/index.js</url>
+          <line>164</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
