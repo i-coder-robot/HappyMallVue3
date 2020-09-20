@@ -81,7 +81,7 @@ export default {
 
 
     function GetUserList(){
-      store.dispatch("Get_User_List",store)
+      store.dispatch("Get_User_List")
     }
 
     return {
