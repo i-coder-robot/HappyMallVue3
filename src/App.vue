@@ -9,11 +9,13 @@
 <script>
 import Test from './views/Test.vue'
 import User from "./views/User.vue"
+import Product from './views/Product.vue'
 export default {
   name: 'App',
   components: {
     Test,
-    User
+    User,
+    Product
   }
 }
 </script>

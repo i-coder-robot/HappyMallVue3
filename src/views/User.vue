@@ -97,7 +97,6 @@ export default {
       page: current.value,
       onChange: (page) => handleUserTableChange(page),
       total: userTotal,
-
     })
 
     onMounted(() => {

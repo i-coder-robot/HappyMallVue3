@@ -35,5 +35,26 @@ export default {
         console.log("删除用户失败")
       }
     })
-  }
+  },
+  async Get_Product_List({commit},payload){
+    let url = `http://localhost:9090/api/product/list?Page=${payload["Page"]}&PageSize=${payload["PageSize"]}`
+    await axios.get(url).then(res=>{
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        let entity = res["data"]["entity"]
+        console.log(entity)
+        commit("Get_Product_List_Mutation", entity)
+      } else {
+        console.log("00000000")
+      }
+    })
+  },
+  async Delete_Product ({commit}, productId) {
+    await axios.post("http://localhost:9090/api/product/delete/" + productId).then(res => {
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        commit("Delete_Product")
+      } else {
+        console.log("删除用户失败")
+      }
+    })
+  },
 }

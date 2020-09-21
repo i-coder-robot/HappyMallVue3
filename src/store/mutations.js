@@ -11,5 +11,12 @@ export default {
   },
   Edit_USer(state){
     state.user_edited = true
+  },
+  Get_Product_List_Mutation(state,entity){
+    state.product_list = entity["data"]
+    state.product_total = entity["total"]
+  },
+  Delete_Product(state){
+    state.product_deleted = true
   }
 }
