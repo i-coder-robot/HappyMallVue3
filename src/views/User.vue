@@ -10,8 +10,6 @@
     <a-table :columns="columns" :data-source="users" :pagination="paginationProps">
       <template v-slot:action="{ text, record }">
       <span>
-<!--        <a @click="GetDetail(record)">查看</a>-->
-        <!--        <a-divider type="vertical"/>-->
         <a @click="EditUser(record)">编辑</a>
         <span v-if="record.isDeleted">
           <a-divider type="vertical"/>
@@ -36,9 +34,9 @@
             @ok="handleOk"
         >
           <p>
-            <a-input v-model:value="nickName" placeholder="请输入昵称" /><br/><br/>
-            <a-input v-model:value="mobile" placeholder="请输入手机号码" /><br/><br/>
-            <a-input v-model:value="address" placeholder="请输入收获地址" /><br/><br/>
+            <a-input v-model:value="userInfo.nickName" placeholder="请输入昵称" /><br/><br/>
+            <a-input v-model:value="userInfo.mobile" placeholder="请输入手机号码" /><br/><br/>
+            <a-input v-model:value="userInfo.address" placeholder="请输入收获地址" /><br/><br/>
           </p>
         </a-modal>
       </div>
@@ -85,6 +83,7 @@ export default {
     let userId = ref("")
     const store = useStore()
     const users = computed(() => store.state.user_list)
+    const userInfo = computed(()=>store.state.user_info)
     const userTotal = computed(() => store.state.user_total)
     const user_deleted = computed(()=>store.state.user_deleted)
     const state = reactive({
@@ -105,11 +104,7 @@ export default {
       GetUserList(1, page_size.value)
     })
 
-    function GetDetail (record) {
-      console.log("GetDetail...")
-      console.log(record)
-      console.log(record.userId)
-    }
+
 
     function handleUserTableChange (idx) {
       console.log(idx)
@@ -138,8 +133,9 @@ export default {
       store.dispatch("Get_User_List", p)
     }
 
-    function EditUser (record) {
+    async function EditUser (record) {
       userId=record.userId
+      await store.dispatch("Get_User_Info",userId)
       showModal()
     }
 
@@ -162,6 +158,7 @@ export default {
     return {
       ...toRefs(state),
       users,
+      userInfo,
       columns,
       visible,
       nickName,
@@ -171,7 +168,6 @@ export default {
       paginationProps,
       handleUserTableChange,
       current,
-      GetDetail,
       EditUser,
       DeleteUser,
       UpdateUser,

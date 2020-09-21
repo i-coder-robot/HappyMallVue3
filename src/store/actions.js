@@ -18,6 +18,23 @@ export default {
       console.error(e)
     }
   },
+  async Get_User_Info({commit},userId){
+    try{
+      let url = `http://localhost:9090/api/user/info/${userId}`
+      console.log(url)
+      await axios.get(url).then(res=>{
+        if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+          let entity = res["data"]["entity"]
+          console.log(entity)
+          commit("Get_User_Info_Mutation", entity)
+        } else {
+          console.log("00000000")
+        }
+      })
+    }catch (e){
+      console.error(e)
+    }
+  },
   async Delete_User ({commit}, userId) {
     await axios.post("http://localhost:9090/api/user/delete/" + userId).then(res => {
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {

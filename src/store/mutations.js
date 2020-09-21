@@ -6,6 +6,9 @@ export default {
     state.user_total = entity["total"]
     state.user_total_page = entity["totalPage"]
   },
+  Get_User_Info_Mutation(state,entity){
+    state.user_info = entity["data"]
+  },
   Delete_USer(state){
     state.user_deleted = true
   },
