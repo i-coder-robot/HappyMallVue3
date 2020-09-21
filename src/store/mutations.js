@@ -6,4 +6,7 @@ export default {
     state.user_total = entity["total"]
     state.user_total_page = entity["totalPage"]
   },
+  Delete_USer(state){
+    state.user_deleted = true
+  }
 }

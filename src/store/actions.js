@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export default {
-  Get_User_List ({commit},payload) {
+  Get_User_List ({commit}, payload) {
     try {
       axios.get("http://localhost:9090/api/user/list").then(res => {
         if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
@@ -15,5 +15,14 @@ export default {
     } catch (e) {
       console.error(e)
     }
+  },
+  async Delete_User ({commit}, payload) {
+    await axios.post("http://localhost:9090/api/user/delete/" + payload).then(res => {
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        commit("Delete_USer")
+      } else {
+        console.log("删除用户失败")
+      }
+    })
   },
 }
