@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53f047d5-3e50-41a6-ac32-4960f7d0a386" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/views/Banner.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Category.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Order.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Product.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/User.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -68,7 +68,7 @@
       <workItem from="1600578809245" duration="1569000" />
       <workItem from="1600583355271" duration="1556000" />
       <workItem from="1600585898064" duration="21000" />
-      <workItem from="1600586062563" duration="23640000" />
+      <workItem from="1600586062563" duration="24202000" />
     </task>
     <servers />
   </component>
