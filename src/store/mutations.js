@@ -8,5 +8,8 @@ export default {
   },
   Delete_USer(state){
     state.user_deleted = true
+  },
+  Edit_USer(state){
+    state.user_edited = true
   }
 }

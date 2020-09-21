@@ -30,13 +30,15 @@
 
         </a-button>
         <a-modal
-            title="修改密码"
+            title="修改用户信息"
             v-model:visible="visible"
             :confirm-loading="confirmLoading"
             @ok="handleOk"
         >
           <p>
-            <a-input-password v-model:pwd="value" placeholder="请输入密码" />
+            <a-input v-model:value="nickName" placeholder="请输入昵称" /><br/><br/>
+            <a-input v-model:value="mobile" placeholder="请输入手机号码" /><br/><br/>
+            <a-input v-model:value="address" placeholder="请输入收获地址" /><br/><br/>
           </p>
         </a-modal>
       </div>
@@ -62,6 +64,10 @@ export default {
         title: '手机号',
         dataIndex: 'mobile',
         key: 'mobile',
+      },{
+        title: '收货地址',
+        dataIndex: 'address',
+        key: 'address',
       },
       {
         title: 'Action',
@@ -69,11 +75,14 @@ export default {
         slots: {customRender: 'action'},
       },
     ],)
-    const current = ref(1)
+    let current = ref(1)
     const page_size = ref(10)
     let visible = ref(false)
-    const confirmLoading = ref(false)
-    let pwd = ref("")
+    let confirmLoading = ref(false)
+    let nickName = ref("")
+    let mobile = ref("")
+    let address = ref("")
+    let userId = ref("")
     const store = useStore()
     const users = computed(() => store.state.user_list)
     const userTotal = computed(() => store.state.user_total)
@@ -84,14 +93,17 @@ export default {
     })
 
     const paginationProps = ref({
-      pageSize: page_size,
+      pageSize: page_size.value,
       page: current.value,
       onChange: (page) => handleUserTableChange(page),
-      total: userTotal.value,
+      total: userTotal,
+
     })
 
     onMounted(() => {
-      GetUserList(1, page_size)
+      console.log("onMounted")
+      console.log(page_size.value)
+      GetUserList(1, page_size.value)
     })
 
     function GetDetail (record) {
@@ -102,47 +114,50 @@ export default {
 
     function handleUserTableChange (idx) {
       console.log(idx)
-      GetUserList(idx, page_size)
+      current.value=idx
+      GetUserList(idx,page_size.value)
     }
 
     function showModal () {
-
       visible.value = true;
     }
 
     function handleOk (e) {
-      this.ModalText = 'The modal will be closed after two seconds';
-      this.confirmLoading = true;
+      let nickNameVal = nickName.value
+      let mobileVal = mobile.value
+      let addressVal = address.value
+      UpdateUser(nickNameVal,mobileVal,addressVal)
+      confirmLoading = true;
       setTimeout(() => {
-        this.visible = false;
-        this.confirmLoading = false;
+        visible.value = false;
+        confirmLoading.value = false;
       }, 2000);
     }
 
-    function GetUserList (page, page_size) {
-      const p = {"page": page, "page_size": page_size}
+    function GetUserList (page, size) {
+      const p = {"Page": page, "PageSize": size}
       store.dispatch("Get_User_List", p)
     }
 
     function EditUser (record) {
-      console.log("EditUser....")
+      userId=record.userId
       showModal()
     }
 
     function DeleteUser (record) {
-      console.log("DeleteUser....")
       store.dispatch("Delete_User",record.userId).then(res=>{
-        console.log(res)
         if (user_deleted){
           message.info("操作成功")
-          GetUserList(current,page_size)
+          GetUserList(current,page_size.value)
         }
       })
 
     }
 
-    function UpdateUser (record) {
-
+    async function UpdateUser (nickName,mobile,address) {
+      let payload = {"UserId":userId,"NickName": nickName, "Mobile": mobile, "Address": address}
+      let res = await store.dispatch("Update_User",payload)
+      GetUserList(current,page_size)
     }
 
     return {
@@ -150,7 +165,9 @@ export default {
       users,
       columns,
       visible,
-      pwd,
+      nickName,
+      mobile,
+      address,
       confirmLoading,
       paginationProps,
       handleUserTableChange,

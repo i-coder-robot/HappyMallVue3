@@ -4,7 +4,9 @@ import axios from "axios";
 export default {
   Get_User_List ({commit}, payload) {
     try {
-      axios.get("http://localhost:9090/api/user/list").then(res => {
+      let url = `http://localhost:9090/api/user/list?Page=${payload["Page"]}&PageSize=${payload["PageSize"]}`
+      console.log(url)
+      axios.get(url).then(res => {
         if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
           let entity = res["data"]["entity"]
           commit("Get_User_List_Mutation", entity)
@@ -16,8 +18,8 @@ export default {
       console.error(e)
     }
   },
-  async Delete_User ({commit}, payload) {
-    await axios.post("http://localhost:9090/api/user/delete/" + payload).then(res => {
+  async Delete_User ({commit}, userId) {
+    await axios.post("http://localhost:9090/api/user/delete/" + userId).then(res => {
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
         commit("Delete_USer")
       } else {
@@ -25,4 +27,13 @@ export default {
       }
     })
   },
+  async Update_User({commit},payload){
+    await axios.post("http://localhost:9090/api/user/edit",payload).then(res=>{
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        commit("Edit_USer")
+      } else {
+        console.log("删除用户失败")
+      }
+    })
+  }
 }
