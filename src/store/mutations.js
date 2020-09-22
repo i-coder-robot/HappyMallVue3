@@ -19,6 +19,9 @@ export default {
     state.product_list = entity["data"]
     state.product_total = entity["total"]
   },
+  Get_Product_Info_Mutation(state,entity){
+    state.product_info = entity["data"]
+  },
   Delete_Product(state){
     state.product_deleted = true
   }

@@ -4,10 +4,14 @@
 
 <script>
 export default {
-name: "Order"
+name: "Order",
   setup(){
 
-
+    // return {
+    //   showProductModal,
+    //   confirmProductLoading,
+    //   handleProductOk,
+    // }
   }
 }
 </script>

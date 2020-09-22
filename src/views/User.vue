@@ -134,7 +134,7 @@ export default {
     }
 
     async function EditUser (record) {
-      userId=record.userId
+      let userId=record.userId
       await store.dispatch("Get_User_Info",userId)
       showModal()
     }

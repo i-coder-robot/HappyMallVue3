@@ -1,4 +1,5 @@
 <template>
+  <h1>现实吗---{{visible}}</h1>
   <a-table :columns="columns" :data-source="products" :pagination="paginationProps">
     <template v-slot:productName="{ text }">
       {{ text }}
@@ -14,7 +15,7 @@
     </template>
     <template v-slot:action="{ text, record }">
       <span>
-        <a>编辑</a>
+        <a @click="EditProduct(record)">编辑</a>
         <a-divider type="vertical"/>
         <span v-if="record.isDeleted">
           <a @click="DeleteProduct(record)">上架</a>
@@ -52,6 +53,26 @@
       </p>
     </template>
   </a-table>
+  <template>
+    <div>
+      <a-button type="primary" @click="showProductModal">
+
+      </a-button>
+      <a-modal
+          title="修改商品信息"
+          v-model:visible="visible"
+          :confirm-loading="confirmProductLoading"
+          @ok="handleProductOk"
+      >
+        <p>
+          <a-input v-model:value="productInfo.productName" placeholder="请输入商品名称" /><br/><br/>
+          <a-input v-model:value="productInfo.originalPrice" placeholder="请输入原始价格" /><br/><br/>
+          <a-input v-model:value="productInfo.sellingPrice" placeholder="请输入销售价格" /><br/><br/>
+          <a-input v-model:value="productInfo.stockNum" placeholder="请输入库存" /><br/><br/>
+        </p>
+      </a-modal>
+    </div>
+  </template>
 </template>
 
 <script>
@@ -92,13 +113,18 @@ export default {
           },
         ]
     )
-    let current = ref(1)
+    let confirmProductLoading = ref(false)
+    let currentProduct = ref(1)
+    let visible = ref(false)
     const page_size = ref(10)
     const products = computed(() => store.state.product_list)
     const productTotal = computed(() => store.state.product_total)
+    const productInfo = computed(()=>store.state.product_info)
+
     const store = useStore()
+
     onMounted(() => {
-      GetProductList(current.value, page_size.value)
+      GetProductList(currentProduct.value, page_size.value)
     })
 
     function GetProductList (page, size) {
@@ -108,27 +134,60 @@ export default {
 
     const paginationProps = ref({
       pageSize: page_size.value,
-      page: current.value,
+      page: currentProduct.value,
       onChange: (page) => handleProductTableChange(page),
       total: productTotal,
     })
 
     function handleProductTableChange (idx) {
-      current.value = idx
+      currentProduct.value = idx
       GetProductList(idx, page_size.value)
     }
 
     async function DeleteProduct(record) {
       let productId = record.productId
       await store.dispatch("Delete_Product",productId)
-      GetProductList(current.value,page_size.value)
+      GetProductList(currentProduct.value,page_size.value)
+    }
+
+    function showProductModal () {
+      visible.value = true;
+    }
+
+    async function EditProduct(record){
+      console.log('EditProduct')
+      let productId = record.productId
+      await store.dispatch("Get_Product_Info",productId)
+      showProductModal()
+    }
+
+    function handleProductOk (e) {
+      let nickNameVal = nickName.value
+      let mobileVal = mobile.value
+      let addressVal = address.value
+      UpdateProduct(nickNameVal,mobileVal,addressVal)
+      confirmProductLoading = true;
+      setTimeout(() => {
+        visible.value = false;
+        confirmProductLoading.value = false;
+      }, 2000);
+    }
+
+    function UpdateProduct(productName,originalPrice,sellingPrice,stockNum){
+
     }
 
     return {
       products,
+      productInfo,
       columns,
       paginationProps,
       DeleteProduct,
+      showProductModal,
+      confirmProductLoading,
+      handleProductOk,
+      EditProduct,
+      visible
     }
   }
 }

@@ -65,6 +65,23 @@ export default {
       }
     })
   },
+  async Get_Product_Info({commit},productId){
+    try{
+      let url = `http://localhost:9090/api/product/info/${productId}`
+      console.log(url)
+      await axios.get(url).then(res=>{
+        if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+          let entity = res["data"]["entity"]
+          console.log(entity)
+          commit("Get_Product_Info_Mutation", entity)
+        } else {
+          console.log("00000000")
+        }
+      })
+    }catch (e){
+      console.error(e)
+    }
+  },
   async Delete_Product ({commit}, productId) {
     await axios.post("http://localhost:9090/api/product/delete/" + productId).then(res => {
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {

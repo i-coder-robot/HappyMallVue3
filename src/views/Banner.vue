@@ -7,7 +7,11 @@ export default {
   name: "Banner",
   setup(){
 
-
+    // return {
+    //   showProductModal,
+    //   confirmProductLoading,
+    //   handleProductOk,
+    // }
   }
 }
 </script>

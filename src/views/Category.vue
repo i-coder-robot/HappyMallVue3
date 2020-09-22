@@ -7,7 +7,11 @@ export default {
 name: "Category",
   setup(){
 
-
+    // return {
+    //   showProductModal,
+    //   confirmProductLoading,
+    //   handleProductOk,
+    // }
   }
 }
 </script>

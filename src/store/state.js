@@ -6,5 +6,6 @@ export default {
   user_edited:false,
 
   product_list:[],
+  product_info:{},
   product_total:0,
 }
