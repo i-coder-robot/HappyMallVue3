@@ -60,7 +60,7 @@
       </a-button>
       <a-modal
           title="修改商品信息"
-          v-model:visible="visible"
+          v-model:visible="product_visible"
           :confirm-loading="confirmProductLoading"
           @ok="handleProductOk"
       >
@@ -115,7 +115,7 @@ export default {
     )
     let confirmProductLoading = ref(false)
     let currentProduct = ref(1)
-    let visible = ref(false)
+    let product_visible = ref(false)
     const page_size = ref(10)
     const products = computed(() => store.state.product_list)
     const productTotal = computed(() => store.state.product_total)
@@ -151,7 +151,7 @@ export default {
     }
 
     function showProductModal () {
-      visible.value = true;
+      product_visible.value = true;
     }
 
     async function EditProduct(record){
@@ -168,7 +168,7 @@ export default {
       UpdateProduct(nickNameVal,mobileVal,addressVal)
       confirmProductLoading = true;
       setTimeout(() => {
-        visible.value = false;
+        product_visible.value = false;
         confirmProductLoading.value = false;
       }, 2000);
     }
@@ -187,7 +187,7 @@ export default {
       confirmProductLoading,
       handleProductOk,
       EditProduct,
-      visible
+      product_visible
     }
   }
 }
