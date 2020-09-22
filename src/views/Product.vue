@@ -1,5 +1,9 @@
 <template>
-  <h1>现实吗---{{visible}}</h1>
+  参数{{ productId }}
+  {{ productName}}
+  {{ originalPrice}}
+  {{ sellingPrice}}
+  {{ stockNum}}
   <a-table :columns="columns" :data-source="products" :pagination="paginationProps">
     <template v-slot:productName="{ text }">
       {{ text }}
@@ -31,7 +35,7 @@
         <span class="title">商品ID:</span>{{ record.productId }}
       </p>
       <p class="hiddenContent">
-        <span class="title">商品简介:</span>{{ record.productIntro == "" ? "无": record.productIntro}}
+        <span class="title">商品简介:</span>{{ record.productIntro == "" ? "无" : record.productIntro }}
       </p>
       <p class="hiddenContent">
         <span class="title">商品分类:</span>{{ record.categoryId }}
@@ -46,7 +50,7 @@
         <span class="title">商品Tag:</span>{{ record.tag }}
       </p>
       <p class="hiddenContent">
-        <span class="title">商品销售状态:</span>{{ record.sellStatus == 0 ? "销售中":"停止销售" }}
+        <span class="title">商品销售状态:</span>{{ record.sellStatus == 0 ? "销售中" : "停止销售" }}
       </p>
       <p class="hiddenContent">
         <span class="title">商品详细内容:</span>{{ record.productDetailContent }}
@@ -65,10 +69,14 @@
           @ok="handleProductOk"
       >
         <p>
-          <a-input v-model:value="productInfo.productName" placeholder="请输入商品名称" /><br/><br/>
-          <a-input v-model:value="productInfo.originalPrice" placeholder="请输入原始价格" /><br/><br/>
-          <a-input v-model:value="productInfo.sellingPrice" placeholder="请输入销售价格" /><br/><br/>
-          <a-input v-model:value="productInfo.stockNum" placeholder="请输入库存" /><br/><br/>
+          <a-input v-model:value="productInfo.productName" placeholder="请输入商品名称"/>
+          <br/><br/>
+          <a-input v-model:value="productInfo.originalPrice" placeholder="请输入原始价格"/>
+          <br/><br/>
+          <a-input v-model:value="productInfo.sellingPrice" placeholder="请输入销售价格"/>
+          <br/><br/>
+          <a-input v-model:value="productInfo.stockNum" placeholder="请输入库存"/>
+          <br/><br/>
         </p>
       </a-modal>
     </div>
@@ -113,13 +121,18 @@ export default {
           },
         ]
     )
+    let productId=ref("")
+    let productName = ref("")
+    let originalPrice = ref("")
+    let sellingPrice = ref("")
+    let stockNum = ref("")
     let confirmProductLoading = ref(false)
     let currentProduct = ref(1)
     let product_visible = ref(false)
     const page_size = ref(10)
     const products = computed(() => store.state.product_list)
     const productTotal = computed(() => store.state.product_total)
-    const productInfo = computed(()=>store.state.product_info)
+    const productInfo = computed(() => store.state.product_info)
 
     const store = useStore()
 
@@ -144,37 +157,48 @@ export default {
       GetProductList(idx, page_size.value)
     }
 
-    async function DeleteProduct(record) {
+    async function DeleteProduct (record) {
       let productId = record.productId
-      await store.dispatch("Delete_Product",productId)
-      GetProductList(currentProduct.value,page_size.value)
+      await store.dispatch("Delete_Product", productId)
+      GetProductList(currentProduct.value, page_size.value)
     }
 
     function showProductModal () {
       product_visible.value = true;
     }
 
-    async function EditProduct(record){
+    async function EditProduct (record) {
       console.log('EditProduct')
-      let productId = record.productId
-      await store.dispatch("Get_Product_Info",productId)
+      productId = record.productId
+      productName = record.productName
+      originalPrice = record.originalPrice
+      sellingPrice = record.sellingPrice
+      stockNum = record.stockNum
+      await store.dispatch("Get_Product_Info", productId)
       showProductModal()
     }
 
-    function handleProductOk (e) {
-      let nickNameVal = nickName.value
-      let mobileVal = mobile.value
-      let addressVal = address.value
-      UpdateProduct(nickNameVal,mobileVal,addressVal)
-      confirmProductLoading = true;
+    async function handleProductOk (e) {
+      await UpdateProduct()
+      confirmProductLoading.value = true;
       setTimeout(() => {
         product_visible.value = false;
         confirmProductLoading.value = false;
       }, 2000);
+      GetProductList(currentProduct.value, page_size.value)
     }
 
-    function UpdateProduct(productName,originalPrice,sellingPrice,stockNum){
-
+    async function UpdateProduct() {
+      let p = productInfo.value
+      let param = {
+        "ProductId": p.productId,
+        "ProductName": p.productName,
+        "OriginalPrice": parseInt(p.originalPrice),
+        "SellingPrice": parseInt(p.sellingPrice),
+        "StockNum": parseInt(p.stockNum)
+      }
+      console.log(p)
+      await store.dispatch("Update_Product", param)
     }
 
     return {
@@ -187,16 +211,22 @@ export default {
       confirmProductLoading,
       handleProductOk,
       EditProduct,
-      product_visible
+      product_visible,
+      productId,
+      productName,
+      originalPrice,
+      sellingPrice,
+      stockNum,
     }
   }
 }
 </script>
 
 <style scoped>
-.title{
+.title {
   padding-right: 20px;
 }
+
 hiddenContent {
   margin-left: 0;
   margin-bottom: 5px;

@@ -49,7 +49,7 @@ export default {
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
         commit("Edit_USer")
       } else {
-        console.log("删除用户失败")
+        console.log("更新用户失败")
       }
     })
   },
@@ -82,12 +82,23 @@ export default {
       console.error(e)
     }
   },
+  async Update_Product({commit},payload){
+    console.log("Update_Product")
+    console.log(payload)
+    await axios.post("http://localhost:9090/api/product/edit",payload).then(res=>{
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        commit("Edit_USer")
+      } else {
+        console.log("更新商品失败")
+      }
+    })
+  },
   async Delete_Product ({commit}, productId) {
     await axios.post("http://localhost:9090/api/product/delete/" + productId).then(res => {
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
         commit("Delete_Product")
       } else {
-        console.log("删除用户失败")
+        console.log("删除商品失败")
       }
     })
   },
