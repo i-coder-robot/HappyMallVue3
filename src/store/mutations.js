@@ -32,4 +32,14 @@ export default {
   Delete_Banner(state){
     state.banner_deleted = true
   },
+
+
+  Get_Order_List_Mutation(state,entity){
+    state.order_list = entity["data"]
+    console.log("Get_Order_List_Mutation")
+    console.log(state.order_list)
+  },
+  Delete_Order(state){
+    state.order_deleted = true
+  },
 }

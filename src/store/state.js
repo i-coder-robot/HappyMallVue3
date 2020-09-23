@@ -13,4 +13,9 @@ export default {
   banner_total:0,
   banner_info:{},
   banner_deleted:false,
+
+  order_list:[],
+  order_total:0,
+  order_info:{},
+  order_deleted:false,
 }

@@ -6,8 +6,7 @@
       <change beforePath="$PROJECT_DIR$/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Banner.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Product.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Product.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Order.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +69,7 @@
       <workItem from="1600583355271" duration="1556000" />
       <workItem from="1600585898064" duration="21000" />
       <workItem from="1600586062563" duration="31418000" />
-      <workItem from="1600750518462" duration="10052000" />
+      <workItem from="1600750518462" duration="12649000" />
     </task>
     <servers />
   </component>
@@ -90,6 +89,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1600836138812" />
+    <state x="761" y="310" key="RollbackChangesDialog" timestamp="1600840445806">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="761" y="310" key="RollbackChangesDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1600840445806" />
     <state x="661" y="362" width="598" height="476" key="find.popup" timestamp="1600837886500">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>

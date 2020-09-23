@@ -145,4 +145,52 @@ export default {
       }
     })
   },
+  async Get_Order_List({commit},payload){
+    let url = `http://localhost:9090/api/order/list?Page=${payload["Page"]}&PageSize=${payload["PageSize"]}`
+    console.log(url)
+    await axios.get(url).then(res=>{
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        let entity = res["data"]["entity"]
+        commit("Get_Order_List_Mutation", entity)
+      } else {
+        console.log("00000000")
+      }
+    })
+  },
+  async Get_Order_Info({commit},bannerId){
+    try{
+      let url = `http://localhost:9090/api/order/info/${bannerId}`
+      await axios.get(url).then(res=>{
+        if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+          let entity = res["data"]["entity"]
+          console.log(entity)
+          commit("Get_Banner_Info_Mutation", entity)
+        } else {
+          console.log("00000000")
+        }
+      })
+    }catch (e){
+      console.error(e)
+    }
+  },
+  async Update_Order({commit},payload){
+    await axios.post("http://localhost:9090/api/order/edit",payload).then(res=>{
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        commit("Edit_USer")
+      } else {
+        console.log("更新商品失败")
+      }
+    })
+  },
+  async Delete_Order ({commit}, bannerId) {
+    const url ="http://localhost:9090/api/order/delete/" + bannerId
+    console.log(url)
+    await axios.post(url).then(res => {
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        commit("Delete_Banner")
+      } else {
+        console.log("删除商品失败")
+      }
+    })
+  },
 }
