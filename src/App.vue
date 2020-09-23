@@ -7,15 +7,19 @@
 </template>
 
 <script>
-import Test from './views/Test.vue'
+import Banner from "./views/Banner.vue"
+import Category from "./views/Category.vue"
+import Order from "./views/Order.vue"
 import User from "./views/User.vue"
 import Product from './views/Product.vue'
 export default {
   name: 'App',
   components: {
-    Test,
     User,
-    Product
+    Product,
+    Banner,
+    Order,
+    Category
   }
 }
 </script>
