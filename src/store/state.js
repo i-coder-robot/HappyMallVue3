@@ -8,4 +8,9 @@ export default {
   product_list:[],
   product_info:{},
   product_total:0,
+
+  banner_list:[],
+  banner_total:0,
+  banner_info:{},
+  banner_deleted:false,
 }

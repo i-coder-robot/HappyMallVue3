@@ -9,7 +9,7 @@ export default {
   Get_User_Info_Mutation(state,entity){
     state.user_info = entity["data"]
   },
-  Delete_USer(state){
+  Delete_User(state){
     state.user_deleted = true
   },
   Edit_USer(state){
@@ -24,5 +24,12 @@ export default {
   },
   Delete_Product(state){
     state.product_deleted = true
-  }
+  },
+  Get_Banner_List_Mutation(state,entity){
+    state.banner_list = entity["data"]
+    console.log(state.banner_list)
+  },
+  Delete_Banner(state){
+    state.banner_deleted = true
+  },
 }

@@ -1,9 +1,4 @@
 <template>
-  参数{{ productId }}
-  {{ productName}}
-  {{ originalPrice}}
-  {{ sellingPrice}}
-  {{ stockNum}}
   <a-table :columns="columns" :data-source="products" :pagination="paginationProps">
     <template v-slot:productName="{ text }">
       {{ text }}
@@ -223,6 +218,10 @@ export default {
 </script>
 
 <style scoped>
+.page_width {
+  width: 80%;
+  margin: 0 auto;
+}
 .title {
   padding-right: 20px;
 }
