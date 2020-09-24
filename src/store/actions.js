@@ -222,7 +222,7 @@ export default {
         if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
           let entity = res["data"]["entity"]
           console.log(entity)
-          commit("Get_Banner_Info_Mutation", entity)
+          commit("Get_Category_Info_Mutation", entity)
         } else {
           console.log("00000000")
         }
@@ -234,20 +234,20 @@ export default {
   async Update_Category({commit},payload){
     await axios.post("http://localhost:9090/api/category/edit",payload).then(res=>{
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
-        commit("Edit_USer")
+        commit("Edit_Category")
       } else {
         console.log("更新商品失败")
       }
     })
   },
-  async Delete_Category({commit}, bannerId) {
-    const url ="http://localhost:9090/api/category/delete/" + bannerId
+  async Delete_Category({commit}, categoryId) {
+    const url ="http://localhost:9090/api/category/delete/" + categoryId
     console.log(url)
     await axios.post(url).then(res => {
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
-        commit("Delete_Banner")
+        commit("Delete_Category")
       } else {
-        console.log("删除商品失败")
+        console.log("删除分类失败")
       }
     })
   },

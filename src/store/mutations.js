@@ -48,4 +48,7 @@ export default {
     console.log(state.category_list)
     state.category_total = entity["total"]
   },
+  Delete_Category(state){
+    state.category_deleted = true
+  },
 }

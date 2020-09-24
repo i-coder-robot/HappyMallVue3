@@ -21,5 +21,6 @@ export default {
   order_deleted:false,
 
   category_list : [],
-  category_total: 0
+  category_total: 0,
+  category_deleted: false
 }

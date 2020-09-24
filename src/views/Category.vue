@@ -24,7 +24,7 @@
             title="修改用户信息"
             v-model:visible="category_visible"
             :confirm-loading="confirmCategoryLoading"
-            @ok="handleBannerOk"
+            @ok="handleCategoryOk"
         >
           <p>
             <a-input v-model:value="C1Name" placeholder="一级分类名称"/>
@@ -102,7 +102,7 @@ export default {
     let redirectUrl = ref("")
     let order = ref("")
     let confirmCategoryLoading = ref(false)
-    let currentBanner = ref(1)
+    let currentCategory = ref(1)
     let category_visible = ref(false)
     const page_size = ref(10)
     const categories = computed(() => store.state.category_list)
@@ -123,7 +123,7 @@ export default {
     const store = useStore()
 
     onMounted(() => {
-      GetCategoryList(currentBanner.value, page_size.value)
+      GetCategoryList(currentCategory.value, page_size.value)
     })
 
     function GetCategoryList (page, size) {
@@ -133,20 +133,20 @@ export default {
 
     const paginationProps = ref({
       pageSize: page_size.value,
-      page: currentBanner.value,
-      onChange: (page) => handleBannerTableChange(page),
+      page: currentCategory.value,
+      onChange: (page) => handleCategoryTableChange(page),
       total: bannerTotal,
     })
 
-    function handleBannerTableChange (idx) {
-      currentBanner.value = idx
+    function handleCategoryTableChange (idx) {
+      currentCategory.value = idx
       GetCategoryList(idx, page_size.value)
     }
 
     async function DeleteCategory (record) {
-      let bannerId = record.bannerId
-      await store.dispatch("Delete_Banner", bannerId)
-      GetCategoryList(currentBanner.value, page_size.value)
+      let categoryId = record.C3CategoryID
+      await store.dispatch("Delete_Category", categoryId)
+      GetCategoryList(currentCategory.value, page_size.value)
     }
 
     function showCategoryModal () {
@@ -170,17 +170,17 @@ export default {
       showCategoryModal()
     }
 
-    async function handleBannerOk (e) {
-      await UpdateBanner()
+    async function handleCategoryOk (e) {
+      await UpdateCategory()
       confirmCategoryLoading.value = true;
       setTimeout(() => {
         category_visible.value = false;
         confirmCategoryLoading.value = false;
       }, 2000);
-      await GetCategoryList(currentBanner.value, page_size.value)
+      await GetCategoryList(currentCategory.value, page_size.value)
     }
 
-    async function UpdateBanner () {
+    async function UpdateCategory () {
       let param = {
         "bannerId": bannerId.value,
         "url": url.value,
@@ -199,7 +199,7 @@ export default {
       DeleteCategory,
       showCategoryModal,
       confirmCategoryLoading,
-      handleBannerOk,
+      handleCategoryOk,
       EditCategory,
       category_visible,
       bannerId,
