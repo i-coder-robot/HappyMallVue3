@@ -9,6 +9,7 @@ export default {
   product_info:{},
   product_total:0,
 
+  banner_added:false,
   banner_list:[],
   banner_total:0,
   banner_info:{},

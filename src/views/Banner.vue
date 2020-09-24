@@ -1,5 +1,11 @@
 <template>
   <div class="page_width">
+    <div class="addBtn">
+      <a-button type="primary" @click="AddBanner">
+        添加轮播图
+      </a-button>
+    </div>
+
     <a-table :columns="columns" :data-source="banners" :pagination="paginationProps">
       <template v-slot:action="{ text, record }">
       <span>
@@ -18,7 +24,6 @@
     <template>
       <div>
         <a-button type="primary" @click="showBannerModal">
-
         </a-button>
         <a-modal
             title="修改用户信息"
@@ -27,9 +32,12 @@
             @ok="handleBannerOk"
         >
           <p>
-            <a-input v-model:value="url" placeholder="请输入轮播图片地址" /><br/><br/>
-            <a-input v-model:value="redirectUrl" placeholder="请输入轮播图跳转地址" /><br/><br/>
-            <a-input v-model:value="order" placeholder="请输入排序" /><br/><br/>
+            <a-input v-model:value="url" placeholder="请输入轮播图片地址"/>
+            <br/><br/>
+            <a-input v-model:value="redirectUrl" placeholder="请输入轮播图跳转地址"/>
+            <br/><br/>
+            <a-input v-model:value="order" placeholder="请输入排序"/>
+            <br/><br/>
           </p>
         </a-modal>
       </div>
@@ -38,11 +46,12 @@
 </template>
 
 <script>
-import {ref,computed,onMounted} from 'vue'
+import {ref, computed, onMounted} from 'vue'
 import {useStore} from "vuex";
+
 export default {
   name: "Banner",
-  setup(){
+  setup () {
 
     const columns = ref(
         [
@@ -69,13 +78,14 @@ export default {
           },
         ]
     )
-    let bannerId=ref("")
+    let bannerId = ref("")
     let url = ref("")
     let redirectUrl = ref("")
     let order = ref("")
     let confirmBannerLoading = ref(false)
     let currentBanner = ref(1)
     let banner_visible = ref(false)
+    let isEdit = ref(false)
     const page_size = ref(10)
     const banners = computed(() => store.state.banner_list)
     const bannerTotal = computed(() => store.state.banner_total)
@@ -114,14 +124,21 @@ export default {
       banner_visible.value = true;
     }
 
+    async function AddBanner () {
+      showBannerModal()
+      isEdit = false
+
+
+    }
+
     async function EditBanner (record) {
+      isEdit.value = true
       console.log('EditProduct')
       console.log(record.value)
       bannerId.value = record.bannerId
       url.value = record.url
       redirectUrl.value = record.redirectUrl
       order.value = record.order
-      // await store.dispatch("Get_Banner_Info", bannerId)
       showBannerModal()
     }
 
@@ -131,11 +148,12 @@ export default {
       setTimeout(() => {
         banner_visible.value = false;
         confirmBannerLoading.value = false;
+        isEdit.value = false;
       }, 2000);
-      GetBannerList(currentBanner.value, page_size.value)
+      await GetBannerList(currentBanner.value, page_size.value)
     }
 
-    async function UpdateBanner() {
+    async function UpdateBanner () {
       let param = {
         "bannerId": bannerId.value,
         "url": url.value,
@@ -143,7 +161,12 @@ export default {
         "order": parseInt(order.value),
       }
       console.log(param)
-      await store.dispatch("Update_Banner", param)
+      if (isEdit.value) {
+        await store.dispatch("Update_Banner", param)
+      } else {
+        await store.dispatch("ADD_Banner", param)
+      }
+
     }
 
     return {
@@ -151,6 +174,7 @@ export default {
       bannerInfo,
       columns,
       paginationProps,
+      AddBanner,
       DeleteBanner,
       showBannerModal,
       confirmBannerLoading,
@@ -161,12 +185,19 @@ export default {
       url,
       redirectUrl,
       order,
+      isEdit
     }
   }
 }
 </script>
 
 <style scoped>
+.addBtn {
+  padding-left: 35px;
+  padding-bottom: 30px;
+  text-align: left;
+}
+
 .page_width {
   width: 80%;
   margin: 0 auto;

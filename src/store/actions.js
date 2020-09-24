@@ -98,6 +98,17 @@ export default {
       }
     })
   },
+  async ADD_Banner({commit},payload){
+    let url = "http://localhost:9090/api/banner/add"
+    await axios.post(url,payload).then(res=>{
+      if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
+        let entity = res["data"]["entity"]
+        commit("ADD_Banner_Mutation", entity)
+      } else {
+        console.log("00000000")
+      }
+    })
+  },
   async Get_Banner_List({commit},payload){
     let url = `http://localhost:9090/api/banner/list?Page=${payload["Page"]}&PageSize=${payload["PageSize"]}`
     await axios.get(url).then(res=>{

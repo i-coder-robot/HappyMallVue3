@@ -32,8 +32,9 @@ export default {
   Delete_Banner(state){
     state.banner_deleted = true
   },
-
-
+  ADD_Banner_Mutation(state){
+    state.banner_added = true
+  },
   Get_Order_List_Mutation(state,entity){
     state.order_list = entity["data"]
     console.log("Get_Order_List_Mutation")
