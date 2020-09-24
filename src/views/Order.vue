@@ -12,13 +12,12 @@
     <template v-slot:payStatus="{ text }">
       {{ text }}
     </template>
-
     <template v-slot:action="{ text, record }">
       <span>
         <a @click="EditOrder(record)">编辑</a>
         <a-divider type="vertical"/>
         <span v-if="record.isDeleted">
-          <a @click="DeleteOrder(record)">上架</a>
+          <a @click="DeleteOrder(record)">恢复</a>
         </span>
         <span v-else>
           <a @click="DeleteOrder(record)">删除</a>
@@ -50,7 +49,6 @@
   <template>
     <div>
       <a-button type="primary" @click="showOrderModal">
-
       </a-button>
       <a-modal
           title="修改商品信息"
@@ -59,14 +57,12 @@
           @ok="handleOrderOk"
       >
         <p>
-<!--          <a-input v-model:value="productInfo.productName" placeholder="请输入商品名称"/>-->
-<!--          <br/><br/>-->
-<!--          <a-input v-model:value="productInfo.originalPrice" placeholder="请输入原始价格"/>-->
-<!--          <br/><br/>-->
-<!--          <a-input v-model:value="productInfo.sellingPrice" placeholder="请输入销售价格"/>-->
-<!--          <br/><br/>-->
-<!--          <a-input v-model:value="productInfo.payStatus" placeholder="请输入库存"/>-->
-<!--          <br/><br/>-->
+          <a-input v-model:value="nickName" placeholder="请输入用户昵称"/>
+          <br/><br/>
+          <a-input v-model:value="mobile" placeholder="请输入手机号码"/>
+          <br/><br/>
+          <a-input v-model:value="userAddress" placeholder="请输入收货地址"/>
+          <br/><br/>
         </p>
       </a-modal>
     </div>
@@ -102,31 +98,6 @@ name: "Order",
             key: 'payStatus',
             dataIndex: 'payStatus',
           },
-          // {
-          //   title: '支付类型',
-          //   key: 'payType',
-          //   dataIndex: 'payType',
-          // },
-          // {
-          //   title: '支付时间',
-          //   key: 'payTime',
-          //   dataIndex: 'payTime',
-          // },
-          // {
-          //   title: '订单状态',
-          //   key: 'orderStatus',
-          //   dataIndex: 'orderStatus',
-          // },
-          // {
-          //   title: '收货地址',
-          //   key: 'userAddress',
-          //   dataIndex: 'userAddress',
-          // },
-          // {
-          //   title: '留言',
-          //   key: 'extraInfo',
-          //   dataIndex: 'extraInfo',
-          // },
           {
             title: '操作',
             key: 'action',
@@ -137,6 +108,7 @@ name: "Order",
     let orderId=ref("")
     let nickName = ref("")
     let mobile = ref("")
+    let userAddress = ref("")
     let totalPrice = ref("")
     let payStatus = ref("")
     let confirmOrderLoading = ref(false)
@@ -172,7 +144,7 @@ name: "Order",
 
     async function DeleteOrder (record) {
       let orderId = record.orderId
-      await store.dispatch("DeleteOrder", orderId)
+      await store.dispatch("Delete_Order", orderId)
       GetOrderList(currentOrder.value, page_size.value)
     }
 
@@ -192,7 +164,7 @@ name: "Order",
     }
 
     async function handleOrderOk (e) {
-      await UpdateProduct()
+      await UpdateOrder()
       confirmOrderLoading.value = true;
       setTimeout(() => {
         order_visible.value = false;
@@ -202,26 +174,22 @@ name: "Order",
     }
 
     function EditOrder (record) {
-      console.log('EditProduct')
-      // productId = record.productId
-      // productName = record.productName
-      // originalPrice = record.originalPrice
-      // sellingPrice = record.sellingPrice
-      // stockNum = record.stockNum
-      // await store.dispatch("Get_Product_Info", productId)
-      // showProductModal()
+      console.log('EditOrder')
+      orderId.value = record.orderId
+      nickName.value = record.nickName
+      mobile.value = record.mobile
+      userAddress.value = record.userAddress
+      showOrderModal()
     }
 
-    async function UpdateProduct() {
-      let p = orderInfo.value
+    async function UpdateOrder() {
       let param = {
-        "orderId": p.orderId,
-        "nickName": p.nickName,
-        "mobile": parseInt(p.mobile),
-        "totalPrice": parseInt(p.totalPrice),
-        "payStatus": parseInt(p.payStatus)
+        "orderId": orderId.value,
+        "nickName": nickName.value,
+        "mobile": mobile.value,
+        "userAddress": userAddress.value,
       }
-      console.log(p)
+      console.log(param)
       await store.dispatch("Update_Order", param)
     }
 
@@ -239,6 +207,7 @@ name: "Order",
       orderId,
       nickName,
       mobile,
+      userAddress,
       totalPrice,
       payStatus,
     }
