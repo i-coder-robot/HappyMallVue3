@@ -43,4 +43,9 @@ export default {
   Delete_Order(state){
     state.order_deleted = true
   },
+  Get_Category_List_Mutation(state,entity){
+    state.category_list = entity["data"]
+    console.log(state.category_list)
+    state.category_total = entity["total"]
+  },
 }

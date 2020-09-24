@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Banner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Category.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,7 @@
       <workItem from="1600583355271" duration="1556000" />
       <workItem from="1600585898064" duration="21000" />
       <workItem from="1600586062563" duration="31418000" />
-      <workItem from="1600750518462" duration="18753000" />
+      <workItem from="1600750518462" duration="23006000" />
     </task>
     <servers />
   </component>

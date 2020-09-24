@@ -19,4 +19,7 @@ export default {
   order_total:0,
   order_info:{},
   order_deleted:false,
+
+  category_list : [],
+  category_total: 0
 }
