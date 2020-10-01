@@ -4,3 +4,4 @@ dist
 *.local
 .idea
 yarn.lock
+/package-lock.json

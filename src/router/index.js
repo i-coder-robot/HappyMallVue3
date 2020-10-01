@@ -5,6 +5,7 @@ import Product from "../views/Product.vue"
 import Banner from "../views/Banner.vue";
 import Order from "../views/Order.vue";
 import Category from "../views/Category.vue";
+import Test001 from "../views/Test001.vue"
 
 
 const routeHistory = createWebHistory()
@@ -15,6 +16,9 @@ const router = createRouter({
     {
       path: '/',
       component: User
+    },{
+      path: '/test001',
+      component: Test001
     },{
       path: '/product',
       component: Product
