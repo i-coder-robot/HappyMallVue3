@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Category.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +68,10 @@
       <workItem from="1600583355271" duration="1556000" />
       <workItem from="1600585898064" duration="21000" />
       <workItem from="1600586062563" duration="31418000" />
-      <workItem from="1600750518462" duration="24391000" />
+      <workItem from="1600750518462" duration="25942000" />
+      <workItem from="1601086712202" duration="1151000" />
+      <workItem from="1601270772106" duration="588000" />
+      <workItem from="1601548703980" duration="565000" />
     </task>
     <servers />
   </component>

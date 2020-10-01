@@ -139,7 +139,7 @@ export default {
   async Update_Banner({commit},payload){
     await axios.post("http://localhost:9090/api/banner/edit",payload).then(res=>{
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
-        commit("Edit_USer")
+        commit("Edit_User")
       } else {
         console.log("更新商品失败")
       }
@@ -232,11 +232,13 @@ export default {
     }
   },
   async Update_Category({commit},payload){
+    console.log("Update_Category")
+    console.log(payload)
     await axios.post("http://localhost:9090/api/category/edit",payload).then(res=>{
       if (res["status"] === 200 && res["data"]["entity"]["code"] === 200) {
         commit("Edit_Category")
       } else {
-        console.log("更新商品失败")
+        console.log("更新分类失败")
       }
     })
   },

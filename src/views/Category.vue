@@ -27,14 +27,14 @@
             @ok="handleCategoryOk"
         >
           <p>
-            <a-input v-model:value="C1Name" placeholder="一级分类名称"/>
-            <br/><br/>
-            <a-input v-model:value="C1Order" placeholder="一级分类排序"/>
-            <br/><br/>
-            <a-input v-model:value="C2Name" placeholder="二级分类名称"/>
-            <br/><br/>
-            <a-input v-model:value="C2Order" placeholder="二级分类排序"/>
-            <br/><br/>
+<!--            <a-input v-model:value="C1Name" placeholder="一级分类名称"/>-->
+<!--            <br/><br/>-->
+<!--            <a-input v-model:value="C1Order" placeholder="一级分类排序"/>-->
+<!--            <br/><br/>-->
+<!--            <a-input v-model:value="C2Name" placeholder="二级分类名称"/>-->
+<!--            <br/><br/>-->
+<!--            <a-input v-model:value="C2Order" placeholder="二级分类排序"/>-->
+<!--            <br/><br/>-->
             <a-input v-model:value="C3Name" placeholder="三级分类名称"/>
             <br/><br/>
             <a-input v-model:value="C3Order" placeholder="三级分类排序"/>
@@ -165,6 +165,7 @@ export default {
       C1Order.value = record.C1Order
       C2Name.value=record.C2Name
       C2Order.value = record.C2Order
+      C3CategoryID.value = record.C3CategoryID
       C3Name.value = record.C3Name
       C3Order.value = record.C3Order
       showCategoryModal()
@@ -182,10 +183,9 @@ export default {
 
     async function UpdateCategory () {
       let param = {
-        "bannerId": bannerId.value,
-        "url": url.value,
-        "redirectUrl": redirectUrl.value,
-        "order": parseInt(order.value),
+        "CategoryID":C3CategoryID.value,
+        "Name": C3Name.value,
+        "Order": parseInt(C3Order.value),
       }
       console.log(param)
       await store.dispatch("Update_Category", param)

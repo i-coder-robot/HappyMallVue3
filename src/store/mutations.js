@@ -51,4 +51,7 @@ export default {
   Delete_Category(state){
     state.category_deleted = true
   },
+  Edit_Category(state){
+    state.category_edited = true
+  }
 }
