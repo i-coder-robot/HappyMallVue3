@@ -2,10 +2,11 @@
   <div>{{ state.randomNum }}</div>
   <div>{{ randomNum2 }}</div>
   <div>跳槽以后的薪水--{{ double }}</div>
+  <button @click="jump">跳槽加薪</button>
 </template>
 
 <script>
-import {reactive, ref, computed,toRefs} from "vue";
+import {reactive, ref, computed,watch,watchEffect} from "vue";
 
 export default {
   name: "Test001",
@@ -27,6 +28,13 @@ export default {
     function rand() {
       return Math.random() * 10 + 1
     }
+    function addSalary(){
+      salary.value = salary.value + salary.value*0.1
+    }
+
+    function jump(){
+      addSalary()
+    }
 
     setTimeout(() => {
       state.randomNum = parseInt(rand(), 10)
@@ -37,13 +45,33 @@ export default {
     // JS里如果是randomNum2按值传递，如果是对象，按引用传递，所以这里用randomNum2.value
 
     setTimeout(() => {
-      salary.value = salary.value + salary.value*0.1
+      addSalary()
+      if (salary.value>10000){
+        stop()
+      }
     },1000)
 
+    // const stop = watchEffect(()=>{
+    //   console.log(salary.value)
+    // })
+
+    const stop = watchEffect(async (cancel)=>{
+      console.log(salary.value)
+      await new Promise(function (resolve,reject){
+        console.log(salary.value)
+        resolve()
+      })
+
+      cancel(()=>{
+        console.log("cancel")
+      })
+    })
+    //生命周期，看网页
     return {
       state,
       randomNum2,
-      double
+      double,
+      jump
     }
   }
 }

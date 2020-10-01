@@ -29,7 +29,7 @@ const router = createRouter({
       path:"/order",
       component:Order
     },{
-      path:"/Category",
+      path:"/category",
       component:Category
   }
     ]
