@@ -1,4 +1,5 @@
 <template>
+  <h1>Vue3.0新特性</h1>
   <div>{{ state.randomNum }}</div>
   <div>{{ randomNum2 }}</div>
   <div>跳槽以后的薪水--{{ double }}</div>

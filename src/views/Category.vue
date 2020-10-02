@@ -1,4 +1,5 @@
 <template>
+  <h1>分类列表</h1>
   <div class="page_width">
 
     <a-table :columns="columns" :data-source="categories" :pagination="paginationProps">

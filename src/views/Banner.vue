@@ -1,4 +1,5 @@
 <template>
+  <h1>轮播图列表</h1>
   <div class="page_width">
     <div class="addBtn">
       <a-button type="primary" @click="AddBanner">

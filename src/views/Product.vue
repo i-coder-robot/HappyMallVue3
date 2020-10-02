@@ -1,4 +1,5 @@
 <template>
+  <h1>商品列表</h1>
   <a-table :columns="columns" :data-source="products" :pagination="paginationProps">
     <template v-slot:productName="{ text }">
       {{ text }}
