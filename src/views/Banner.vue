@@ -128,8 +128,6 @@ export default {
     async function AddBanner () {
       showBannerModal()
       isEdit = false
-
-
     }
 
     async function EditBanner (record) {

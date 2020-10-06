@@ -154,10 +154,6 @@ export default {
       category_visible.value = true;
     }
 
-    async function AddBanner () {
-      showCategoryModal()
-    }
-
     async function EditCategory (record) {
       console.log('EditProduct')
       console.log(record.value)
