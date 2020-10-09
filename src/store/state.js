@@ -24,3 +24,5 @@ export default {
   category_total: 0,
   category_deleted: false
 }
+
+

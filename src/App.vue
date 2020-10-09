@@ -5,7 +5,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import Banner from "./views/Banner.vue"
 import Category from "./views/Category.vue"

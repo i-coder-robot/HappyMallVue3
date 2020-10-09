@@ -7,3 +7,4 @@ export default Vuex.createStore({
   actions,
   mutations,
 })
+

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export default {
   Get_User_List ({commit}, payload) {
     try {

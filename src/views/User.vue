@@ -1,11 +1,5 @@
 <template>
   <h1>用户列表</h1>
-  <!--  <a-button @click="GetUserList" type="primary">获取用户列表</a-button>-->
-  <!--  <ul>-->
-  <!--    <li v-for="(item,idx) in users" :key="idx">-->
-  <!--      {{item.nickName}}&#45;&#45;{{item.mobile}}-->
-  <!--    </li>-->
-  <!--  </ul>-->
   <div class="page_width">
     <a-table :columns="columns" :data-source="users" :pagination="paginationProps">
       <template v-slot:action="{ text, record }">

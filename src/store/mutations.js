@@ -55,3 +55,4 @@ export default {
     state.category_edited = true
   }
 }
+

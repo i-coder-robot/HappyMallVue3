@@ -1,6 +1,5 @@
 <template>
   <div class="page_width">
-
     <a-table :columns="columns" :data-source="categories" :pagination="paginationProps">
       <template v-slot:action="{ text, record }">
       <span>

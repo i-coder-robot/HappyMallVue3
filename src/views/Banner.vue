@@ -5,7 +5,6 @@
         添加轮播图
       </a-button>
     </div>
-
     <a-table :columns="columns" :data-source="banners" :pagination="paginationProps">
       <template v-slot:action="{ text, record }">
       <span>

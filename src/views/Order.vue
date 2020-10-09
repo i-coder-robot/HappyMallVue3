@@ -22,7 +22,6 @@
         <span v-else>
           <a @click="DeleteOrder(record)">删除</a>
         </span>
-
       </span>
     </template>
     <template #expandedRowRender="{ record }">

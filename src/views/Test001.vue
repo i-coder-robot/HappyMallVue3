@@ -3,7 +3,6 @@
   <div>{{ randomNum2 }}</div>
   <div>跳槽以后的薪水--{{ double }}</div>
 </template>
-
 <script>
 import {reactive, ref, computed,toRefs} from "vue";
 
