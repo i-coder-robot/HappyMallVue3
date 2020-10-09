@@ -1,4 +1,5 @@
 <template>
+  <h1>分类列表</h1>
   <div class="page_width">
     <a-table :columns="columns" :data-source="categories" :pagination="paginationProps">
       <template v-slot:action="{ text, record }">
@@ -150,10 +151,6 @@ export default {
 
     function showCategoryModal () {
       category_visible.value = true;
-    }
-
-    async function AddBanner () {
-      showCategoryModal()
     }
 
     async function EditCategory (record) {

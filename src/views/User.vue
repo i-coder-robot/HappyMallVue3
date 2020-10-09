@@ -119,7 +119,7 @@ export default {
       setTimeout(() => {
         visible.value = false;
         confirmLoading.value = false;
-      }, 2000);
+      }, 500);
     }
 
     function GetUserList (page, size) {
@@ -140,7 +140,6 @@ export default {
           GetUserList(current,page_size.value)
         }
       })
-
     }
 
     async function UpdateUser (nickName,mobile,address) {

@@ -16,3 +16,10 @@ vue --version
 创建项目
 
 vue create 你的项目名称
+
+/               访问User
+/test001        Vue3.0新特性
+/product        产品页
+/banner         轮播图
+/order          订单
+/category       分类

@@ -1,10 +1,13 @@
 <template>
+  <h1>Vue3.0新特性</h1>
   <div>{{ state.randomNum }}</div>
-  <div>{{ randomNum2 }}</div>
-  <div>跳槽以后的薪水--{{ double }}</div>
+  <div>{{ randomNum2 }}</div><br/><br/>
+  <div>跳槽以后的薪水--{{ double }}</div><br/><br/>
+  <button @click="jump">跳槽</button><br/><br/>
+  <button @click="addSalary">加薪</button>
 </template>
 <script>
-import {reactive, ref, computed,toRefs} from "vue";
+import {reactive, ref, computed,watch,watchEffect} from "vue";
 
 export default {
   name: "Test001",
@@ -19,12 +22,24 @@ export default {
     // 上面的模板里state,每次写都会很麻烦
     // ref登场，它也是做响应式数据的
     const randomNum2 = ref(0)
-    const salary = ref(2200)
+    const salary = ref(7000)
     const double = computed(() => {
-      return salary.value * 2
+      return salary.value
     })
     function rand() {
       return Math.random() * 10 + 1
+    }
+    function addSalary(){
+      salary.value = salary.value + salary.value*0.1
+      if (salary.value>10000){
+        stop()
+      }
+
+    }
+
+    function jump() {
+      salary.value = salary.value * 2
+
     }
 
     setTimeout(() => {
@@ -35,14 +50,31 @@ export default {
     // 为什么是randomNum2.value而不是randomNum2
     // JS里如果是randomNum2按值传递，如果是对象，按引用传递，所以这里用randomNum2.value
 
-    setTimeout(() => {
-      salary.value = salary.value + salary.value*0.1
-    },1000)
 
+    // const stop = watchEffect(()=>{
+    //   console.log("watchEffect")
+    //   console.log(salary.value)
+    // })
+
+    const stop = watchEffect(async (cancel)=>{
+      console.log(salary.value)
+      await new Promise(function (resolve,reject){
+        console.log(salary.value)
+        resolve()
+      })
+
+      cancel(()=>{
+        console.log("cancel")
+      })
+    })
+
+    //生命周期，看网页
     return {
       state,
       randomNum2,
-      double
+      double,
+      jump,
+      addSalary,
     }
   }
 }

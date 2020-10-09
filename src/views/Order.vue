@@ -1,4 +1,5 @@
 <template>
+  <h1>订单列表</h1>
   <a-table :columns="columns" :data-source="orders" :pagination="paginationProps">
     <template v-slot:nickName="{ text }">
       {{ text }}
@@ -50,7 +51,7 @@
       <a-button type="primary" @click="showOrderModal">
       </a-button>
       <a-modal
-          title="修改商品信息"
+          title="修改订单信息"
           v-model:visible="order_visible"
           :confirm-loading="confirmOrderLoading"
           @ok="handleOrderOk"
@@ -149,17 +150,6 @@ name: "Order",
 
     function showOrderModal () {
       order_visible.value = true;
-    }
-
-    async function EditProduct (record) {
-      console.log('EditProduct')
-      orderId = record.orderId
-      nickName = record.nickName
-      mobile = record.mobile
-      totalPrice = record.totalPrice
-      payStatus = record.payStatus
-      await store.dispatch("Get_Order_Info", orderId)
-      showOrderModal()
     }
 
     async function handleOrderOk (e) {
